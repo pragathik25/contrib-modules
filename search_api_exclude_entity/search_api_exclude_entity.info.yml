@@ -1,0 +1,14 @@
+name: Search API Exclude Entity
+type: module
+description: Exclude one or more entities from being indexed in Search API.
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: Search
+dependencies:
+  - drupal:field
+  - search_api:search_api
+
+# Information added by Drupal.org packaging script on 2023-01-09
+version: '8.x-1.4'
+project: 'search_api_exclude_entity'
+datestamp: 1673284563

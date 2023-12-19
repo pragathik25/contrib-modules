@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall and update hooks for translatable_menu_link_uri.
+ */
+
+/**
+ * Set the overridden link options to the same as the parent link.
+ */
+function translatable_menu_link_uri_update_8001() {
+  $database = Drupal::database();
+
+  $tables = [
+    'menu_link_content_data',
+    'menu_link_content_field_revision',
+  ];
+
+  foreach ($tables as $table) {
+    $fields = [
+      'id',
+      'link__options',
+      'link_override__options',
+    ];
+
+    // Check the fields to be selected before updating it.
+    if (!_translatable_menu_link_check_fields($table, $fields)) {
+      continue;
+    }
+
+    $menu_links = $database->select($table, 'mlcd')
+      ->fields('mlcd', $fields)
+      ->execute()
+      ->fetchAll();
+
+    if (empty($menu_links)) {
+      continue;
+    }
+
+    $updates = [];
+    foreach ($menu_links as $link) {
+      if ($link->link__options !== $link->link_override__options) {
+        // Only replace the value if it's not already set to an array.
+        if (unserialize($link->link_override__options, ['allowed_classes' => FALSE])) {
+          continue;
+        }
+
+        $updates[$link->id] = $link->link__options;
+      }
+    }
+
+    if (!empty($updates)) {
+      foreach ($updates as $key => $value) {
+        $database->update($table)
+          ->fields(['link_override__options' => $value])
+          ->condition('id', $key)
+          ->execute();
+      }
+    }
+  }
+}
+
+/**
+ * Validate if the fields exists on the table to be updated or not.
+ *
+ * @param string $table
+ *   The table to be checked.
+ * @param array $fields
+ *   A simple array with all the fields names.
+ *
+ * @return bool
+ *   Returns TRUE if all the fields exists on the table, otherwise FALSE.
+ */
+function _translatable_menu_link_check_fields(string $table, array $fields): bool {
+  $database = \Drupal::database();
+  foreach ($fields as $field) {
+    if (!$database->schema()->fieldExists($table, $field)) {
+      return FALSE;
+    }
+  }
+  return TRUE;
+
+}

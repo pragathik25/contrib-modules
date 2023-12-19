@@ -1,0 +1,10 @@
+name: Smart Content
+type: module
+description: Provides an API and toolset for personalizing user experiences for anonymous and authenticated users.
+core_version_requirement: ^8 || ^9
+package: Smart Content
+
+# Information added by Drupal.org packaging script on 2021-01-27
+version: '3.0.0'
+project: 'smart_content'
+datestamp: 1611713174

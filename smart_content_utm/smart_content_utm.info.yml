@@ -1,0 +1,13 @@
+name: Smart Content UTM
+type: module
+description: Parses UTM query parameters into cookies for use with smart content conditions.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Smart Content
+dependencies:
+  - smart_content:smart_content
+
+# Information added by Drupal.org packaging script on 2021-02-08
+version: '1.0.0'
+project: 'smart_content_utm'
+datestamp: 1612765600

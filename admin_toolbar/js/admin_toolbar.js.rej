@@ -1,0 +1,17 @@
+***************
+*** 10,16 ****
+            const $toolbar = $(this);
+  
+            // Initialize Extend/Collapse buttons even if menu was loaded horizontally.
+-           $toolbar.children('.toolbar-menu').drupalToolbarMenu()
+  
+            // Don't automatically open active page's menu if not on mobile.
+            function closeActiveTrail() {
+--- 10,16 ----
+            const $toolbar = $(this);
+  
+            // Initialize Extend/Collapse buttons even if menu was loaded horizontally.
++           // $toolbar.children('.toolbar-menu').drupalToolbarMenu()
+  
+            // Don't automatically open active page's menu if not on mobile.
+            function closeActiveTrail() {

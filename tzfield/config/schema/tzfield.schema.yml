@@ -1,0 +1,13 @@
+field.value.tzfield:
+  type: field.value.string
+  label: 'Default value'
+
+field.field_settings.tzfield:
+  label: 'Time zone settings'
+  type: mapping
+  mapping:
+    exclude:
+      type: sequence
+      label: 'Excluded time zones'
+      sequence:
+        type: string

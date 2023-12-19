@@ -1,0 +1,12 @@
+name: Language Neutral URL Aliases
+type: module
+description: Use the same URL aliases regardless of language.
+core_version_requirement: ^8.8 || ^9 || ^10
+package: Other
+dependencies:
+  - drupal:path_alias
+
+# Information added by Drupal.org packaging script on 2023-03-31
+version: '3.1.0'
+project: 'language_neutral_aliases'
+datestamp: 1680266947

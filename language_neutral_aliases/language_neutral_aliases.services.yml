@@ -1,0 +1,7 @@
+services:
+  language_neutral_aliases.repository_decorator:
+    class: Drupal\language_neutral_aliases\AliasRepositoryDecorator
+    public: false
+    decorates: path_alias.repository
+    decoration_priority: 9
+    arguments: ['@language_neutral_aliases.repository_decorator.inner', '@database']

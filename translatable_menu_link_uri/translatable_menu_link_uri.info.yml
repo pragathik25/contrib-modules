@@ -1,0 +1,8 @@
+name: Translatable Menu Link Uri
+type: module
+description: This module enables support for translation of link field in menu_link_content entity.
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:menu_link_content
+  - drupal:content_translation

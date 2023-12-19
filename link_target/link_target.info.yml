@@ -1,0 +1,11 @@
+name: Link Target
+type: module
+description: Provide a widget for Link field type which permits to choose target.
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - drupal:link
+
+# Information added by Drupal.org packaging script on 2022-07-31
+version: '8.x-1.4'
+project: 'link_target'
+datestamp: 1659271399

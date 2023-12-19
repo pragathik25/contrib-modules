@@ -1,0 +1,15 @@
+--- src/Condition/ConditionsHelperTrait.php	(revision f469232f4b4d574ae1fb0b49ccf4db9199c8da14)
++++ src/Condition/ConditionsHelperTrait.php	(date 1647589308463)
+@@ -142,7 +142,11 @@
+       }
+     }
+ 
+-    if (method_exists(get_parent_class($this), '__sleep')) {
++    $object_or_class = get_parent_class($this);
++    if (
++      is_string($object_or_class)
++      && method_exists($object_or_class, '__sleep')
++    ) {
+       $vars = parent::__sleep();
+     }
+     else {

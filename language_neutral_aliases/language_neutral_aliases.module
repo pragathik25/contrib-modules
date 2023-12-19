@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Module to enforce language neutral aliases.
+ */
+
+use Drupal\language_neutral_aliases\NeutralPathAliasListBuilder;
+use Drupal\language_neutral_aliases\NeutralPathAliasStorage;
+
+require __DIR__ . '/language_neutral_aliases.stubs.inc';
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * Override path_alias storage to always save aliases language neutral.
+ */
+function language_neutral_aliases_entity_type_alter(array &$entity_types) {
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  if ($entity_types['path_alias']) {
+    $entity_types['path_alias']
+      ->setStorageClass(NeutralPathAliasStorage::class);
+    $entity_types['path_alias']
+      ->setListBuilderClass(NeutralPathAliasListBuilder::class);
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function language_neutral_aliases_module_implements_alter(&$implementations, $hook) {
+  // Ensure our hook_entity_type_alter is called last so we can override the
+  // list builder class that the path module sets.
+  if ($hook == 'entity_type_alter') {
+    $group = $implementations['language_neutral_aliases'];
+    unset($implementations['language_neutral_aliases']);
+    $implementations['language_neutral_aliases'] = $group;
+  }
+}

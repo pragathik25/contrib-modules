@@ -1,0 +1,6 @@
+/tests export-ignore
+/phpcs.xml export-ignore
+/phpstan.dist.neon export-ignore
+/drupalci.yml export-ignore
+/phpunit.xml export-ignore
+

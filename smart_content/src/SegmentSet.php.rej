@@ -1,0 +1,11 @@
+--- src/SegmentSet.php	(revision f469232f4b4d574ae1fb0b49ccf4db9199c8da14)
++++ src/SegmentSet.php	(date 1647638239559)
+@@ -17,7 +17,7 @@
+    *
+    * @var \Drupal\smart_content\Segment[]
+    */
+-  protected $segments;
++  protected $segments = [];
+ 
+   /**
+    * Constructs a new SegmentSet.
